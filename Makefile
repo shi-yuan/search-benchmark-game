@@ -9,7 +9,7 @@ COMMANDS ?=  TOP_100 TOP_100_COUNT COUNT
 # ENGINES ?= tantivy-0.16 lucene-8.10.1 pisa-0.8.2 bleve-0.8.0-scorch bluge-0.2.2 rucene-0.1
 # ENGINES ?= tantivy-0.16 tantivy-0.17 tantivy-0.18 tantivy-0.19
 # ENGINES ?= tantivy-0.22 lucene-10.0.0 lucene-10.0.0-bp pisa-0.8.2
-ENGINES ?= calmcore-0.1.0 lucene-10.0.0 lucene-10.0.0-bp
+ENGINES ?= calmcore-0.1.0 tantivy-0.22 lucene-10.0.0 lucene-10.0.0-bp
 PORT ?= 8080
 
 help:

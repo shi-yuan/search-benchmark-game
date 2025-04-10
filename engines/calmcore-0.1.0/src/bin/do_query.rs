@@ -12,14 +12,14 @@ fn main() {
 fn main_inner(schema_name: &str, data_path: &str) -> CoreResult<()> {
     env_logger::Builder::from_env(env_logger::Env::default().default_filter_or("info")).init();
 
-    let sql = format!("select * from {} where ", schema_name);
+    let sql = format!("select * from {} where", schema_name);
 
     let core = CalmCore::new(data_path)?;
     let engine = core.load_engine(schema_name)?;
 
     let stdin = std::io::stdin();
-    for line_res in stdin.lock().lines() {
-        let line = line_res?;
+    for line in stdin.lock().lines() {
+        let line = line?;
         let fields: Vec<&str> = line.split("\t").collect();
         assert_eq!(fields.len(), 2, "Expected a line in the format <COMMAND> query.");
 

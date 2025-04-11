@@ -22,7 +22,7 @@ fn main_inner(schema_name: &str, data_path: &str) -> CoreResult<()> {
     let schema = make_schema(schema_name);
     let core = CalmCore::new_with_conf(Config {
         data_path: data_path.to_string(),
-        segment_max_size: 10_000,
+        segment_max_size: 500_000,
         flush_interval_secs: 300,
     })?;
     let space = core.create_engine(schema)?;
@@ -40,11 +40,9 @@ fn main_inner(schema_name: &str, data_path: &str) -> CoreResult<()> {
         if line.trim().is_empty() {
             continue;
         }
-        total += 1;
 
-        let value = serde_json::from_str::<serde_json::Value>(&line)?;
-        let name = value.get("id").unwrap().as_str().unwrap();
-        actions.push(Action::new(ActionType::Append, name, line.as_bytes()));
+        total += 1;
+        actions.push(Action::new(ActionType::Append, "", line.as_bytes()));
 
         if total % 1000 == 0 {
             space.mutate(actions, None)?;

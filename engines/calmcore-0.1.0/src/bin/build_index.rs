@@ -74,7 +74,7 @@ fn make_schema(schema_name: &str) -> Schema {
     calmcore::easy_schema(
         schema_name,
         vec![
-            ("id".to_string(), Type::String, Some(Term(TermOption { no_index: true, no_store: false }))),
+            ("id".to_string(), Type::String, Some(Term(TermOption { no_index: false, no_store: false }))),
             ("text".to_string(), Type::Text, Some(Fulltext(FulltextOption {
                 tokenizer: Tokenizer::Standard as i32,
                 filters: Vec::new(),
